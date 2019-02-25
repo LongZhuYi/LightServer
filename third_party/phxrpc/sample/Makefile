@@ -4,7 +4,7 @@
 #
 #
 
-include /home/long/桌面/phxrpcsvr/third_party/phxrpc/phxrpc.mk
+include /mnt/hgfs/gitcode/phxrpcsrv/third_party/phxrpc/phxrpc.mk
 
 LDFLAGS := -L$(PHXRPC_ROOT)/lib -lphxrpc $(LDFLAGS)
 

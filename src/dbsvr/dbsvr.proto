@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package dbsvr;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+import "phxrpc/rpc/phxrpc.proto";
+
+message SetReq
+{
+	string key = 1;
+	string value = 2;
+}
+
+message SetResp
+{
+	uint32 code = 1;
+}
+
+message GetReq
+{
+	string key = 1;
+}
+
+message GetResp
+{
+	uint32 code = 1;
+	string value = 2;
+}
+
+service dbsvr {
+
+    rpc Set( SetReq  ) returns ( SetResp  ) {
+        option(phxrpc.CmdID) = 1;
+        option(phxrpc.OptString) = "q:";
+        option(phxrpc.Usage) = "-q <query>";
+    }
+
+    rpc Get( GetReq ) returns ( GetResp  ) {
+        option(phxrpc.CmdID) = 2;
+        option(phxrpc.OptString) = "m:";
+        option(phxrpc.Usage) = "-m <msg>";
+    }
+}
+

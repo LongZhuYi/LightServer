@@ -1,0 +1,19 @@
+1、compiler protobuf
+
+根目录下
+./autogen.sh
+./configure CXXFLAGS=-fPIC --prefix=[当前目录绝对路径]
+make && make install
+
+编译完成后检查是否在当前目录成功生成bin,include,lib三个子目录
+
+2、compiler phxrpc
+third_party目录放置好protobuf目录
+make (默认是-O2编译，如需编译debug版，执行 make debug=y)
+make boost (可选，编译PhxRPC的boost优化插件，编译之前先准备好boost库)
+编写proto文件
+
+根据proto文件生成框架代码
+PhxRPC根目录)/codegen/phxrpc_pb2server -I (PhxRPC根目录) -I (Protobuf include目录) -f (proto文件路径) -d (生成代码放置路径)
+../codegen/phxrpc_pb2server -I ../ -I ../third_party/protobuf/include -f search.proto -d .
+

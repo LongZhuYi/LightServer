@@ -1,4 +1,4 @@
-prefix=/home/long/desktop/phxrpcsvr/third_part/phxrpc/third_part/protobuf
+prefix=/mnt/hgfs/gitcode/phxrpcsrv/third_party/phxrpc/third_party/protobuf
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
