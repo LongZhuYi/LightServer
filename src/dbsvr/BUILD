@@ -1,10 +1,4 @@
 
-
-
-
-#libdbsvr_client.a dbsvr_main dbsvr_tool_main
-
-
 cc_library(
 	name = 'libdbsvr_client',
 	srcs = [

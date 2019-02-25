@@ -33,14 +33,14 @@ service dbsvr {
 
     rpc Set( SetReq  ) returns ( SetResp  ) {
         option(phxrpc.CmdID) = 1;
-        option(phxrpc.OptString) = "q:";
-        option(phxrpc.Usage) = "-q <query>";
+        option(phxrpc.OptString) = "k:a:";
+        option(phxrpc.Usage) = "-k <key> -a <value>";
     }
 
     rpc Get( GetReq ) returns ( GetResp  ) {
         option(phxrpc.CmdID) = 2;
-        option(phxrpc.OptString) = "m:";
-        option(phxrpc.Usage) = "-m <msg>";
+        option(phxrpc.OptString) = "k:";
+        option(phxrpc.Usage) = "-k <key>";
     }
 }
 

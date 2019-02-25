@@ -27,10 +27,26 @@ int DbsvrServiceImpl::PHXEcho(const google::protobuf::StringValue &req, google::
 }
 
 int DbsvrServiceImpl::Set(const dbsvr::SetReq &req, dbsvr::SetResp *resp) {
-    return -1;
+	SimpleRedis Reids("127.0.0.1", 6379);
+	int iRet = Reids.HSet( "htable", req.key(), req.value() );
+	if( 0 != iRet  )
+	{
+		printf("DbsvrServiceImpl::Set fail %d\n", iRet);
+	}
+	resp->set_code( iRet );
+    return iRet;
 }
 
 int DbsvrServiceImpl::Get(const dbsvr::GetReq &req, dbsvr::GetResp *resp) {
-    return -1;
+	SimpleRedis Reids("127.0.0.1", 6379);
+	std::string value;
+	int iRet = Reids.HGet( "htable", req.key(), value);
+	if( 0 != iRet  )
+	{
+		printf("DbsvrServiceImpl::Get fail %d\n", iRet);
+	}
+	resp->set_code(iRet);
+	resp->set_value( value );
+    return iRet;
 }
 

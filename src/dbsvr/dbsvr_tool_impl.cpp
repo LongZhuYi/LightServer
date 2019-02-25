@@ -43,6 +43,9 @@ int DbsvrToolImpl::Set(phxrpc::OptMap &opt_map) {
 
     // TODO: fill req from opt_map
 
+    req.set_key( opt_map.Get('k') );
+    req.set_value( opt_map.Get('a') );
+
     DbsvrClient client;
     int ret{client.Set(req, &resp)};
     printf("%s return %d\n", __func__, ret);
@@ -56,7 +59,7 @@ int DbsvrToolImpl::Get(phxrpc::OptMap &opt_map) {
     dbsvr::GetResp resp;
 
     // TODO: fill req from opt_map
-
+    req.set_key( opt_map.Get('k') );
     DbsvrClient client;
     int ret{client.Get(req, &resp)};
     printf("%s return %d\n", __func__, ret);

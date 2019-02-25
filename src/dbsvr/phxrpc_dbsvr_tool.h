@@ -40,10 +40,10 @@ class DbsvrTool {
         static Name2Func_t name2func[]{
             {"PHXEcho", &DbsvrTool::PHXEcho, "c:f:vs:",
                     "-s <string>"},
-            {"Set", &DbsvrTool::Set, "c:f:vq:",
-                    "-q <query>"},
-            {"Get", &DbsvrTool::Get, "c:f:vm:",
-                    "-m <msg>"},
+            {"Set", &DbsvrTool::Set, "c:f:vk:a:",
+                    "-k <key> -a <value>"},
+            {"Get", &DbsvrTool::Get, "c:f:vk:",
+                    "-k <key>"},
             {nullptr, nullptr}
         };
 

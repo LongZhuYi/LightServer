@@ -7,6 +7,7 @@
 include /mnt/hgfs/gitcode/phxrpcsrv/third_party/phxrpc/phxrpc.mk
 
 LDFLAGS := -L$(PHXRPC_ROOT)/lib -lphxrpc $(LDFLAGS)
+LDFLAGS := -L /usr/local/lib -lhiredis $(LDFLAGS)
 
 # choose to use boost for network
 #LDFLAGS := $(PLUGIN_BOOST_LDFLAGS) $(LDFLAGS)
@@ -16,7 +17,8 @@ SVR_OBJS = dbsvr.pb.o \
 		phxrpc_dbsvr_service.o \
 		phxrpc_dbsvr_dispatcher.o \
 		dbsvr_server_config.o \
-		dbsvr_main.o
+		dbsvr_main.o \
+		../minToolkit/redis/simpleredis.cpp
 
 CLI_OBJS = dbsvr.pb.o \
 		dbsvr_client.o \

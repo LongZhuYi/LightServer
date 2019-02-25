@@ -155,16 +155,16 @@ const char descriptor_table_protodef_dbsvr_2eproto[] =
   "o\032\027phxrpc/rpc/phxrpc.proto\"$\n\006SetReq\022\013\n\003"
   "key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t\"\027\n\007SetResp\022\014\n\004c"
   "ode\030\001 \001(\r\"\025\n\006GetReq\022\013\n\003key\030\001 \001(\t\"&\n\007GetR"
-  "esp\022\014\n\004code\030\001 \001(\r\022\r\n\005value\030\002 \001(\t2\213\001\n\005dbs"
-  "vr\022A\n\003Set\022\r.dbsvr.SetReq\032\016.dbsvr.SetResp"
-  "\"\033\200\310\320\007\001\212\310\320\007\002q:\222\310\320\007\n-q <query>\022\?\n\003Get\022\r.d"
-  "bsvr.GetReq\032\016.dbsvr.GetResp\"\031\200\310\320\007\002\212\310\320\007\002m"
-  ":\222\310\320\007\010-m <msg>b\006proto3"
+  "esp\022\014\n\004code\030\001 \001(\r\022\r\n\005value\030\002 \001(\t2\226\001\n\005dbs"
+  "vr\022L\n\003Set\022\r.dbsvr.SetReq\032\016.dbsvr.SetResp"
+  "\"&\200\310\320\007\001\212\310\320\007\004k:a:\222\310\320\007\023-k <key> -a <value>"
+  "\022\?\n\003Get\022\r.dbsvr.GetReq\032\016.dbsvr.GetResp\"\031"
+  "\200\310\320\007\002\212\310\320\007\002k:\222\310\320\007\010-k <key>b\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_dbsvr_2eproto = {
   false, InitDefaults_dbsvr_2eproto, 
   descriptor_table_protodef_dbsvr_2eproto,
-  "dbsvr.proto", &assign_descriptors_table_dbsvr_2eproto, 382,
+  "dbsvr.proto", &assign_descriptors_table_dbsvr_2eproto, 393,
 };
 
 void AddDescriptors_dbsvr_2eproto() {
