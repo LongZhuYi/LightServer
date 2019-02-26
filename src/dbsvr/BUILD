@@ -38,7 +38,11 @@ cc_binary(
 		'-Wall',
 		#'-Werror',
 		'-std=gnu++11',
-	]
+	],
+	extra_linkflags = [
+        '-lpthread',
+        #'-L/usr/lib64/mysql/',
+    ]
 )
 
 cc_binary(
@@ -63,5 +67,8 @@ cc_binary(
 		'-Wall',
 		#'-Werror',
 		'-std=gnu++11',
+	],
+	extra_linkflags = [
+		'-lpthread',
 	]
 )
