@@ -1,7 +1,7 @@
 #ifndef SIMPLE_REDIS_H
 #define SIMPLE_REDIS_H
 
-#include "../../../third_party/hredis/hiredis.h"
+#include "hiredis.h"
 #include <string>
 
 class SimpleRedis
