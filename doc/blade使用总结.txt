@@ -13,3 +13,28 @@ extra_linkflags 连接，如-lpthread、-L/usr/lib64/mysql/ 等
 
 incs 头文件列表，如 ./include、 . 等
 export_incs 头文件列表，如 ./include、 . 等
+
+extra_swigflags = [ '-fPIC' ],
+
+
+定义生成规则
+game_protoc_cmd = "cd %s; %s/thirdparty/protobuf/bin/protoc " \
+	" --cpp_out=. -I. -I%s/ -I%s/thirdparty/protobuf/src/ game.proto" \
+	% ( src_dir, blade_root, blade_root, blade_root )
+gen_rule(
+	name = 'game.pb.h',
+	cmd = game_protoc_cmd,
+	srcs = [ 'game.proto',],
+	outs = [ 'game.pb.h', 'game.pb.cc' ],
+	deps = g_deps
+)
+
+#proto_pb
+game_cliproto_cmd = 'cd %s; skproto2client -f game.proto -d .' % ( src_dir )
+gen_rule(
+	name = 'gamecliproto.pb.h',
+	cmd = game_cliproto_cmd,
+	srcs = [ 'game.proto',],
+	outs = [ 'sk_gamecliproto.pb.h' , 'sk_gamecliproto.pb.cpp' ,],
+	deps = g_deps
+)
