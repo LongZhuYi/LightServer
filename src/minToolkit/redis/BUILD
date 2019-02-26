@@ -4,6 +4,6 @@ cc_library(
     			'simpleredis.cpp',
     		],
     export_incs = ['.',],
-
-    deps = [ '//thirdpart/hredis:hredis' ],
+    incs = [ '.',],
+    deps = [ '//thirdparty/hredis:hiredis' ],
 )

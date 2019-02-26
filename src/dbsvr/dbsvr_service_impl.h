@@ -8,7 +8,7 @@
 
 #include "dbsvr.pb.h"
 #include "phxrpc_dbsvr_service.h"
-#include "../minToolkit/redis/simpleredis.h"
+#include "simpleredis.h"
 
 class DbsvrServerConfig;
 

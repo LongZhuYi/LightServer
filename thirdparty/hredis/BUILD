@@ -1,5 +1,6 @@
 cc_library(
-    name =  'hredis',
+    name =  'hiredis',
     prebuilt = True,
+    incs = [ '.',],
     export_incs = ['.',],
 )
