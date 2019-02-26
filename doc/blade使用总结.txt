@@ -1,0 +1,15 @@
+1、生成目标文件类型
+
+cc_binary 运行文件
+cc_library 库文件
+
+
+2、标签
+name 生成文件名
+srcs 源文件列表
+deps 依赖列表，可以是另一个BUILD文件中的某个生成文件
+extra_cppflags 编译宏，如-std=gnu++11、-Werror,-Wall 等
+extra_linkflags 连接，如-lpthread、-L/usr/lib64/mysql/ 等
+
+incs 头文件列表，如 ./include、 . 等
+export_incs 头文件列表，如 ./include、 . 等
