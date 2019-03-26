@@ -4,20 +4,18 @@
 #include <vector>
 #include <map>
 
-class Channel;
-
 namespace LightServer
 {
 	namespace Net
 	{
+		class Channel;
+
 		class Poll : public NonCopyAble
 		{
 		public:
 			
 		protected:
-			virtual int Update(Channel*) = 0;
-			virtual int Delete(Channel*) = 0;
-			virtual int Add(Channel*) = 0;
+			virtual int Update( std::shared_ptr<Channel>& channelPtr) = 0;
 			virtual int GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList) = 0;
 		}
 	}

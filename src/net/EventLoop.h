@@ -3,13 +3,16 @@
 #include "../base/NonCopyAble.h"
 #include <vector>
 #include <functional>
+#include <mutex>
 
-class Poll;
+
 
 namespace LightServer
 {
 	namespace Net
 	{
+		class Poll;
+		
 		class EventLoop : public NonCopyAble
 		{
 		public:
@@ -19,12 +22,14 @@ namespace LightServer
 			EventLoop(Poll* pollPtr);
 			~EventLoop();
 
+			bool UpdateChannel(std::shared_ptr<Channel>& channelPtr);
 			void Loop();
-			bool RunInDealyFuncList( Func&& func );
+			bool RunInDelayFuncList( Func&& func );
 		private:
 			bool bStop_;
-			FuncList dealyFuncList_;
+			FuncList delayFuncList_;
 			std::shared_ptr<Poll> ptrPoll_;
+			std::mutex mutex_;
 		}
 	}
 }

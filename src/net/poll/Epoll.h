@@ -3,7 +3,12 @@
 #include "../../base/NonCopyAble.h"
 #include "../Channel.h"
 
-#include <sys/epoll.h>
+extern "C"
+{
+	#include <stdio.h>
+	#include <unistd.h>
+	#include <sys/epoll.h>
+}	
 
 namespace LightServer
 {
@@ -17,14 +22,10 @@ namespace LightServer
 			Epoll();
 			~Epoll();
 		protected:
-			virtual int Update(Channel*);
-			virtual int Delete(Channel*);
-			virtual int Add(Channel*);
-			virtual int GetActivityChannel();
+			virtual int Update(std::shared_ptr<Channel>& channelPtr, bool isNew);
 			virtual int GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList);
-			Channel* FindChannel( uint32_t channelID );
 		private:
-			ChannelList channelList_;
+			int epollFd_;
 		}
 	}
 }
