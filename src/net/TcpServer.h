@@ -1,6 +1,7 @@
-#program once
+#pragma once
 
 #include "../base/NonCopyAble.h"
+#include <memory>
 
 namespace LightServer
 {

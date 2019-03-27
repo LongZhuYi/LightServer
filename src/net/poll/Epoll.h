@@ -1,7 +1,8 @@
-#program once
+#pragma once
 
 #include "../../base/NonCopyAble.h"
 #include "../Channel.h"
+#include <memory>
 
 extern "C"
 {

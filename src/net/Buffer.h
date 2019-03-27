@@ -1,12 +1,12 @@
-#program once
+#pragma once
 
-#include "../base/NocCopyAble.h"
+#include "../base/NonCopyAble.h"
 
 namespace LightServer
 {
 	namespace Net
 	{
-		class Buffer : public NocCopyAble
+		class Buffer : public NonCopyAble
 		{
 		public:
 			Buffer();

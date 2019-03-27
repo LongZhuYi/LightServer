@@ -12,7 +12,7 @@ cc_library(
     incs = [ '.',],
     extra_cppflags = [ 
 						'-Wall',
-						'-Werror',
+						#'-Werror',
 						'-std=gnu++11',
 					],
     #deps = [ '//thirdparty/hredis:hiredis' ],

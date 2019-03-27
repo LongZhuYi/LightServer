@@ -1,7 +1,7 @@
 //author zhuyi
 //socket operator
 
-#program once
+#pragma once
 #include "../base/NonCopyAble.h"
 
 #include <string>

@@ -1,7 +1,9 @@
-#program once
+#pragma once
 
-#include "../base/NocCopyAble.h"
+#include "../base/NonCopyAble.h"
 #include "poll/Epoll.h"
+
+#include <memory>
 
 /*
 EPOLLIN ：表示对应的文件描述符可以读（包括对端SOCKET正常关闭）；
@@ -19,7 +21,7 @@ namespace LightServer
 	{
 		class EventLoop;
 
-		class Channel : public NocCopyAble
+		class Channel : public NonCopyAble
 		{
 		public:
 
