@@ -19,6 +19,8 @@ extern "C"
 	//#include<arpa/inet.h> 
 }
 
+using namespace std;
+
 namespace LightServer
 {
 	namespace Net

@@ -19,7 +19,7 @@ namespace LightServer
 			typedef std::function< void() > Func;
 			typedef std::vector< Func > FuncList;
 			
-			EventLoop(Poll* pollPtr);
+			EventLoop(std::shared_ptr<Poll>& pollPtr);
 			~EventLoop();
 
 			bool UpdateChannel(std::shared_ptr<Channel>& channelPtr);

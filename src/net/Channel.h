@@ -32,11 +32,12 @@ namespace LightServer
 
 			};
 
-			Channel( EventLoop* loop, int fd );
+			Channel( std::shared_ptr<EventLoop>& loop, int fd );
 			~Channel();
 
 			int Fd(){ return fd_; }
 			int EventS(){ return event_; }
+			int SetEventS(int events){ event_ = events; }
 
 			int ReadAble(){ event_ |= EPOLLIN; Update();  }
 			int WriteAble(){ event_ |= EPOLLOUT; Update(); };
