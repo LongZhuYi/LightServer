@@ -1,18 +1,18 @@
-#program once
+#pragma once
 
 #include "../base/NonCopyAble.h"
 #include <vector>
 #include <functional>
 #include <mutex>
-
-
+#include <memory>
 
 namespace LightServer
 {
 	namespace Net
 	{
 		class Poll;
-		
+		class Channel;
+
 		class EventLoop : public NonCopyAble
 		{
 		public:
@@ -22,7 +22,7 @@ namespace LightServer
 			EventLoop(std::shared_ptr<Poll>& pollPtr);
 			~EventLoop();
 
-			bool UpdateChannel(std::shared_ptr<Channel>& channelPtr);
+			bool UpdateChannel(Channel* channelPtr);
 			void Loop();
 			bool RunInDelayFuncList( Func&& func );
 		private:
@@ -30,6 +30,6 @@ namespace LightServer
 			FuncList delayFuncList_;
 			std::shared_ptr<Poll> ptrPoll_;
 			std::mutex mutex_;
-		}
+		};
 	}
 }

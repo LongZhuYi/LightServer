@@ -3,6 +3,7 @@
 
 #pragma once
 #include "../base/NonCopyAble.h"
+#include "../base/Log.h"
 
 #include <string>
 #include <iostream>
@@ -16,7 +17,7 @@ extern "C"
 	#include<sys/types.h>  
 	#include<sys/socket.h>  
 	#include<netinet/in.h>
-	//#include<arpa/inet.h> 
+	#include<arpa/inet.h> 
 }
 
 using namespace std;

@@ -13,10 +13,9 @@ namespace LightServer
 		class Poll : public NonCopyAble
 		{
 		public:
-			
-		protected:
+
 			virtual int Update( std::shared_ptr<Channel>& channelPtr) = 0;
-			virtual int GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList) = 0;
-		}
+			virtual int GetActivityChannelList(uint32_t timeStamp, std::vector< std::shared_ptr<Channel> >& channelList) = 0;
+		};
 	}
 }

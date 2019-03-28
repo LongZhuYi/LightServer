@@ -3,6 +3,7 @@
 #include "../../base/NonCopyAble.h"
 #include "../Channel.h"
 #include <memory>
+#include <vector>
 
 extern "C"
 {
@@ -41,18 +42,18 @@ namespace LightServer
 {
 	namespace Net
 	{
-		class Epoll : public Poll
+		class Channel;
+		
+		class Epoll
 		{
-		public:
-			typedef std::vector< std::shared_ptr<Channel> > ChannelList;
+			public:
+				Epoll();
+				~Epoll();
 
-			Epoll();
-			~Epoll();
-		protected:
-			virtual int Update(std::shared_ptr<Channel>& channelPtr, bool isNew);
-			virtual int GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList);
-		private:
-			int epollFd_;
-		}
+				int Update(std::shared_ptr<Channel>& channelPtr, bool isNew);
+				int GetActivityChannelList(uint32_t timeStamp, std::vector< std::shared_ptr<Channel> >& channelList);
+			private:
+				int epollFd_;
+		};
 	}
 }

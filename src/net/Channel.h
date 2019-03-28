@@ -3,6 +3,10 @@
 #include "../base/NonCopyAble.h"
 #include "poll/Epoll.h"
 
+extern "C"
+{
+	#include <sys/epoll.h>
+}
 #include <memory>
 
 /*
@@ -39,14 +43,14 @@ namespace LightServer
 
 			int Fd(){ return fd_; }
 			int EventS(){ return event_; }
-			int SetEventS(int events){ event_ = events; }
+			void SetEventS(int events){ event_ = events; }
 
-			int ReadAble(){ event_ |= EPOLLIN; Update();  }
-			int WriteAble(){ event_ |= EPOLLOUT; Update(); };
+			void ReadAble(){ event_ |= EPOLLIN; Update();  }
+			void WriteAble(){ event_ |= EPOLLOUT; Update(); };
 
-			int DisableAll(){ event_ = 0; Update(); }
-			int DisableRead(){ event_ &= ~EPOLLOUT; Update();}
-			int DisableWrite(){ event_ &= ~EPOLLIN; Update(); }
+			void DisableAll(){ event_ = 0; Update(); }
+			void DisableRead(){ event_ &= ~EPOLLOUT; Update();}
+			void DisableWrite(){ event_ &= ~EPOLLIN; Update(); }
 
 			void HandlerEvent();
 
@@ -63,7 +67,6 @@ namespace LightServer
 			ReadFunc readFunc_;
 			WriteFunc writeFunc_;
 			ErrorFunc errorFunc_;
-
-		}
+		};
 	}
 }
