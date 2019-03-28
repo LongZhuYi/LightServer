@@ -4,6 +4,7 @@
 #include "../Channel.h"
 #include <memory>
 #include <vector>
+#include "Poll.h"
 
 extern "C"
 {
@@ -44,7 +45,7 @@ namespace LightServer
 	{
 		class Channel;
 		
-		class Epoll
+		class Epoll : public Poll
 		{
 			public:
 				Epoll();

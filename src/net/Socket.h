@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 
 extern "C"
 {
@@ -26,6 +27,8 @@ namespace LightServer
 {
 	namespace Net
 	{
+		class Buffer;
+
 		class Socket : public NonCopyAble
 		{
 		public:
@@ -41,6 +44,8 @@ namespace LightServer
 			int fd_;
 			int port_;
 			string addr_;
+
+			std::unique_ptr<Buffer> buffer_;
 		};
 	}
 }
