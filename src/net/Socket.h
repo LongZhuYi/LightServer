@@ -32,20 +32,20 @@ namespace LightServer
 		class Socket : public NonCopyAble
 		{
 		public:
-			Socket(int fd);
-			Socket(int port, std::string addr);
-			~Socket();
-			int Read(void*, size_t sz);
-			int Write(void*, size_t sz);
-			int Connect();
-			int Listen();
-			int Accept(); 
+			//Socket(int fd);
+			//Socket(int port);
+			//~Socket();
+			static int Read(int fd, std::shared_ptr<Buffer>& buff);
+			static int Write(int fd, std::shared_ptr<Buffer>& buff);
+			static int Connect(int port, std::string addr);
+			static int Listen(int fd);
+			static int Accept(int fd); 
 		private:
 			int fd_;
 			int port_;
 			string addr_;
 
-			std::unique_ptr<Buffer> buffer_;
+			//std::unique_ptr<Buffer> buffer_;
 		};
 	}
 }

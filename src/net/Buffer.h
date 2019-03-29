@@ -14,10 +14,15 @@ namespace LightServer
 			Buffer();
 			~Buffer();
 
-			void Write(char* ptr, unsigned int sz);
-			void Read(char* ptr, unsigned int sz);
+			int Write(char* ptr, unsigned int sz);
+			int Read(char* ptr, unsigned int sz);
+
+			char* ReadData(){ return data_+lpos_; }
+			char* WriteData(){ return data_+rpos_; }
 
 			unsigned int ReadAbleSize(){ return rpos_-lpos_; }
+			unsigned int WriteAbleSize(){ return BuffMaxSize-rpos_; }
+			void Clear(){ lpos_=0; rpos_=0; }
 		private:
 			char data_[ BuffMaxSize ];
 			unsigned int lpos_;

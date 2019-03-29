@@ -14,7 +14,7 @@ namespace LightServer
 		{
 		public:
 
-			virtual int Update( std::shared_ptr<Channel>& channelPtr, bool) = 0;
+			virtual int Update( Channel* channelPtr, bool) = 0;
 			virtual int GetActivityChannelList(uint32_t timeStamp, std::vector< std::shared_ptr<Channel> >& channelList) = 0;
 		};
 	}

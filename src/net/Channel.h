@@ -2,6 +2,8 @@
 
 #include "../base/NonCopyAble.h"
 #include "poll/Epoll.h"
+#include "Socket.h"
+#include "Buffer.h"
 
 extern "C"
 {
@@ -24,21 +26,24 @@ namespace LightServer
 	namespace Net
 	{
 		class EventLoop;
+		class Buffer;
 
 		class Channel : public NonCopyAble
 		{
 		public:
 
-			typedef std::function<void(int)> ReadFunc;
-			typedef std::function<void(int)> WriteFunc;
-			typedef std::function<void(int)> ErrorFunc;
+			typedef std::function<int(Channel*, std::shared_ptr<Buffer>& buff)> ReadFunc;
+			typedef std::function<int(int)> WriteFunc;
+			typedef std::function<void(int)> ConnectFunc;
+			typedef std::function<int(int)> ErrorFunc;
 
-			enum EventType
+			enum ChannelType
 			{
-
+				ConnectChannel = 0,
+				ListenChannel = 1,
 			};
 
-			Channel( std::shared_ptr<EventLoop>& loop, int fd );
+			Channel( std::shared_ptr<EventLoop>& loop, int fd , ChannelType type);
 			~Channel();
 
 			int Fd(){ return fd_; }
@@ -54,19 +59,28 @@ namespace LightServer
 
 			void HandlerEvent();
 
-			void SetReadFunc( ReadFunc&& func ) { readFunc_ = func; }
-			void SetWriteFunc( WriteFunc&& func ) { writeFunc_ = func; }
-			void SetErrorFunc( ErrorFunc&& func ) { errorFunc_ = func; }
+			void SetReadFunc( ReadFunc& func ) { readFunc_ = func; }
+			void SetWriteFunc( WriteFunc& func ) { writeFunc_ = func; }
+			void SetConnectFunc( const ConnectFunc& func ) { connectFunc_ = func; }
+			void SetErrorFunc( ErrorFunc& func ) { errorFunc_ = func; }
 			void Update();
+
+			bool IsNew(){ return isNew_; }
+			void SetOld(){ isNew_ = false; }
 
 		private:
 			int fd_;
 			uint8_t event_;
+			bool isNew_;
 			std::shared_ptr<EventLoop> loop_;
+			std::shared_ptr<Buffer> inBuffer_;
+			std::shared_ptr<Buffer> outBuffer_;
 
 			ReadFunc readFunc_;
 			WriteFunc writeFunc_;
+			ConnectFunc connectFunc_;
 			ErrorFunc errorFunc_;
+			ChannelType type_; 
 		};
 	}
 }

@@ -51,7 +51,7 @@ namespace LightServer
 				Epoll();
 				~Epoll();
 
-				int Update(std::shared_ptr<Channel>& channelPtr, bool isNew);
+				int Update(Channel* channelPtr, bool isNew);
 				int GetActivityChannelList(uint32_t timeStamp, std::vector< std::shared_ptr<Channel> >& channelList);
 			private:
 				int epollFd_;
