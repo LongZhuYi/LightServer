@@ -27,16 +27,16 @@ namespace LightServer
 	{
 		class EventLoop;
 		class Buffer;
+		class Channel;
+
+		typedef std::function<int(Channel*, std::shared_ptr<Buffer>& buff)> MessageFunc;
+		typedef std::function<int(int)> WriteFunc;
+		typedef std::function<void(int)> ConnectFunc;
+		typedef std::function<int(int)> ErrorFunc;
 
 		class Channel : public NonCopyAble
 		{
 		public:
-
-			typedef std::function<int(Channel*, std::shared_ptr<Buffer>& buff)> ReadFunc;
-			typedef std::function<int(int)> WriteFunc;
-			typedef std::function<void(int)> ConnectFunc;
-			typedef std::function<int(int)> ErrorFunc;
-
 			enum ChannelType
 			{
 				ConnectChannel = 0,
@@ -59,7 +59,7 @@ namespace LightServer
 
 			void HandlerEvent();
 
-			void SetReadFunc( ReadFunc& func ) { readFunc_ = func; }
+			void SetMessageFunc( MessageFunc& func ) { messageFunc_ = func; }
 			void SetWriteFunc( WriteFunc& func ) { writeFunc_ = func; }
 			void SetConnectFunc( const ConnectFunc& func ) { connectFunc_ = func; }
 			void SetErrorFunc( ErrorFunc& func ) { errorFunc_ = func; }
@@ -76,7 +76,7 @@ namespace LightServer
 			std::shared_ptr<Buffer> inBuffer_;
 			std::shared_ptr<Buffer> outBuffer_;
 
-			ReadFunc readFunc_;
+			MessageFunc messageFunc_;
 			WriteFunc writeFunc_;
 			ConnectFunc connectFunc_;
 			ErrorFunc errorFunc_;

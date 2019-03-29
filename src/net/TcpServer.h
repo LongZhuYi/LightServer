@@ -13,12 +13,6 @@ namespace LightServer
 		//class Coder;
 		class Channel;
 
-
-		typedef std::function<int(Channel*, std::shared_ptr<Buffer>& buff)> ReadFunc;
-		typedef std::function< int(int) > WriteFunc;
-		typedef std::function< int(int) > MessageFunc;
-		typedef std::function< int(int) > ErrorFunc;
-
 		class TcpServer : public NonCopyAble
 		{
 		public:
@@ -32,7 +26,6 @@ namespace LightServer
 			void OnConnect(int fd);
 
 			//注册事件处理函数
-			void SetReadFunc( ReadFunc&& readFunc ) { readFunc_ = readFunc; }
 			void SetWriteFunc( WriteFunc&& writeFunc ) { writeFunc_ = writeFunc;  }
 			void SetMessageFunc( MessageFunc&& messageFunc ) { messageFunc_ = messageFunc; }
 			void SetErrorFunc( ErrorFunc&& errorFunc ) { errorFunc_ = errorFunc; } 
@@ -42,7 +35,6 @@ namespace LightServer
 			std::unique_ptr<Channel>   listenChannel_;
 			//std::unique_ptr<Coder>  coder_;
 
-			ReadFunc readFunc_;
 			WriteFunc writeFunc_;
 			MessageFunc messageFunc_;
 			ErrorFunc errorFunc_;
