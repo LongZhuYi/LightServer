@@ -32,7 +32,8 @@ namespace LightServer
 		typedef std::function<int(Channel*, std::shared_ptr<Buffer>& buff)> MessageFunc;
 		typedef std::function<int(int)> WriteFunc;
 		typedef std::function<void(int)> ConnectFunc;
-		typedef std::function<int(int)> ErrorFunc;
+		typedef std::function<void(int)> CloseFunc;
+		typedef std::function<void(int)> ErrorFunc;
 
 		class Channel : public NonCopyAble
 		{
@@ -59,10 +60,11 @@ namespace LightServer
 
 			void HandlerEvent();
 
-			void SetMessageFunc( MessageFunc& func ) { messageFunc_ = func; }
-			void SetWriteFunc( WriteFunc& func ) { writeFunc_ = func; }
+			void SetMessageFunc( const MessageFunc& func ) { messageFunc_ = func; }
+			void SetWriteFunc( const WriteFunc& func ) { writeFunc_ = func; }
 			void SetConnectFunc( const ConnectFunc& func ) { connectFunc_ = func; }
-			void SetErrorFunc( ErrorFunc& func ) { errorFunc_ = func; }
+			void SetErrorFunc( const ErrorFunc& func ) { errorFunc_ = func; }
+			void SetCloseFunc( const CloseFunc& func ) { closeFunc_ = func; }
 			void Update();
 
 			bool IsNew(){ return isNew_; }
@@ -79,6 +81,7 @@ namespace LightServer
 			MessageFunc messageFunc_;
 			WriteFunc writeFunc_;
 			ConnectFunc connectFunc_;
+			CloseFunc closeFunc_;
 			ErrorFunc errorFunc_;
 			ChannelType type_; 
 		};

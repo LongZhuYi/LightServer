@@ -24,6 +24,7 @@ namespace LightServer
 			void SetLoop(std::shared_ptr<EventLoop>& loop ){ loop_ = loop; };
 
 			void OnConnect(int fd);
+			void OnClose(int fd);
 
 			//注册事件处理函数
 			void SetWriteFunc( WriteFunc&& writeFunc ) { writeFunc_ = writeFunc;  }
