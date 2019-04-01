@@ -52,6 +52,7 @@ namespace LightServer
 				~Epoll();
 
 				int Update(Channel* channelPtr, bool isNew);
+				void RemoveFromLoop(int fd);
 				int GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList);
 			private:
 				int epollFd_;

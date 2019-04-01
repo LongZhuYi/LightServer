@@ -52,3 +52,8 @@ bool EventLoop::RunInDelayFuncList( Func&& func )
 	delayFuncList_.emplace( delayFuncList_.end(), func);
 	return true;
 }
+
+void EventLoop::RemoveFromLoop(int fd)
+{
+	ptrPoll_->RemoveFromLoop( fd );
+}

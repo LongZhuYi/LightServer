@@ -15,6 +15,7 @@ namespace LightServer
 		public:
 			typedef std::vector<Channel*> ChannelList;
 			virtual int Update( Channel* channelPtr, bool) = 0;
+			virtual void RemoveFromLoop(int fd) = 0;
 			virtual int GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList) = 0;
 		};
 	}

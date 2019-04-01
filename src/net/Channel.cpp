@@ -13,6 +13,7 @@ Channel::Channel( std::shared_ptr<EventLoop>& loop, int fd, ChannelType type):fd
 Channel::~Channel()
 {
 	std::cout << "~Channel" << std::endl;
+
 }
 
 void Channel::HandlerEvent()
@@ -30,8 +31,8 @@ void Channel::HandlerEvent()
 				int n = Socket::Read( fd_, inBuffer_);
 				if( n == 0 )
 				{
-					closeFunc_(fd_);
 					DisableAll();
+					closeFunc_(fd_);
 					break;
 				}
 				messageFunc_( this, inBuffer_ );
@@ -49,15 +50,15 @@ void Channel::HandlerEvent()
 		}
 		case EPOLLERR:
 		{
-			errorFunc_(fd_);
 			DisableAll();
+			errorFunc_(fd_);
 			LogDebug( "EPOLLERR" );
 			break;
 		}
 		case EPOLLHUP:
 		{
-			closeFunc_(fd_);
 			DisableAll();
+			closeFunc_(fd_);
 			LogDebug( "EPOLLHUP" );
 			break;
 		}
@@ -70,5 +71,8 @@ void Channel::HandlerEvent()
 
 void Channel::Update()
 {
-	loop_->RunInDelayFuncList( std::move(std::bind( &EventLoop::UpdateChannel, loop_.get(), this)) );
+	if( event_ != 0 )
+		loop_->RunInDelayFuncList( std::move(std::bind( &EventLoop::UpdateChannel, loop_.get(), this)) );
+	else
+		loop_->RemoveFromLoop( fd_ );
 }

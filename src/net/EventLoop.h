@@ -23,6 +23,7 @@ namespace LightServer
 			~EventLoop();
 
 			bool UpdateChannel(Channel* channelPtr);
+			void RemoveFromLoop(int fd);
 			void Loop();
 			bool RunInDelayFuncList( Func&& func );
 		private:

@@ -48,6 +48,11 @@ int Epoll::Update(Channel* channelPtr, bool isNew)
 	return 0;
 }
 
+void Epoll::RemoveFromLoop(int fd)
+{
+	epoll_ctl( epollFd_, EPOLL_CTL_DEL, fd, NULL );
+}
+
 int Epoll::GetActivityChannelList(uint32_t timeStamp, ChannelList& channelList)
 {
 	int n = epoll_wait( epollFd_, events, MAX_EVENT_CNT, 300 );
