@@ -1,6 +1,5 @@
 
 build64_debug/version.os
 build64_debug/version.cpp
-*.cpp
 build64_debug/version.os
 build64_debug/version.cpp
