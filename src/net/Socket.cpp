@@ -48,6 +48,7 @@ int Socket::Connect( int port, std::string addr )
     servaddr.sin_port = htons(port);
     inet_pton(AF_INET, addr.c_str(), &servaddr.sin_addr);
 	int fd = ::socket(AF_INET, SOCK_STREAM, 0);
+	SetNonBlock(fd);
 	int connFd = ::connect(fd, (struct sockaddr*)&servaddr, sizeof(struct sockaddr));
 	if( connFd < 0 )
 	{
@@ -66,6 +67,7 @@ int Socket::Listen( int port )
 	servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	int fd = socket( AF_INET, SOCK_STREAM, 0 );
+	SetNonBlock(fd);
 	int iRet = bind( fd, (struct sockaddr*)&servaddr, sizeof(servaddr));
 	if( iRet < 0)
 	{
@@ -86,5 +88,13 @@ int Socket::Listen( int port )
 int Socket::Accept( int fd )
 {
 	int connFd = accept( fd, (struct sockaddr*)NULL, NULL );
+	SetNonBlock(connFd);
 	return connFd;
 } 
+
+
+int Socket::SetNonBlock(int fd)
+{
+	fcntl( fd, F_SETFL, O_NONBLOCK);
+	return 0;
+}

@@ -13,7 +13,7 @@ Buffer::~Buffer()
 	std::cout << "~Buffer" << std::endl;
 }
 
-int Buffer::Write(char* ptr, unsigned int sz)
+int Buffer::Write(const char* ptr, unsigned int sz)
 {
 	sz = std::min( sz, BuffMaxSize - rpos_ );
 	for(int i=0; i<sz; i++)

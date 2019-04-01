@@ -51,17 +51,19 @@ namespace LightServer
 			int EventS(){ return event_; }
 			void SetEventS(int events){ event_ = events; }
 
+			void SendMsg(const char* buff, int sz);
+
 			void ReadAble(){ event_ |= EPOLLIN; Update();  }
 			void WriteAble(){ event_ |= EPOLLOUT; Update(); };
 
 			void DisableAll(){ event_ = 0; Update(); }
-			void DisableRead(){ event_ &= ~EPOLLOUT; Update();}
-			void DisableWrite(){ event_ &= ~EPOLLIN; Update(); }
+			void DisableRead(){ event_ &= ~EPOLLIN; Update();}
+			void DisableWrite(){ event_ &= ~EPOLLOUT; Update(); }
 
 			void HandlerEvent();
 
 			void SetMessageFunc( const MessageFunc& func ) { messageFunc_ = func; }
-			void SetWriteFunc( const WriteFunc& func ) { writeFunc_ = func; }
+			//void SetWriteFunc( const WriteFunc& func ) { writeFunc_ = func; }
 			void SetConnectFunc( const ConnectFunc& func ) { connectFunc_ = func; }
 			void SetErrorFunc( const ErrorFunc& func ) { errorFunc_ = func; }
 			void SetCloseFunc( const CloseFunc& func ) { closeFunc_ = func; }
@@ -72,14 +74,14 @@ namespace LightServer
 
 		private:
 			int fd_;
-			uint8_t event_;
+			uint32_t event_;
 			bool isNew_;
 			std::shared_ptr<EventLoop> loop_;
 			std::shared_ptr<Buffer> inBuffer_;
 			std::shared_ptr<Buffer> outBuffer_;
 
 			MessageFunc messageFunc_;
-			WriteFunc writeFunc_;
+			//WriteFunc writeFunc_;
 			ConnectFunc connectFunc_;
 			CloseFunc closeFunc_;
 			ErrorFunc errorFunc_;

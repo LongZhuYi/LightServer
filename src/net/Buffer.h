@@ -14,7 +14,7 @@ namespace LightServer
 			Buffer();
 			~Buffer();
 
-			int Write(char* ptr, unsigned int sz);
+			int Write(const char* ptr, unsigned int sz);
 			int Read(char* ptr, unsigned int sz);
 
 			char* ReadData(){ return data_+lpos_; }

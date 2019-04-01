@@ -19,6 +19,8 @@ int OnRead(Channel* channel, std::shared_ptr<Buffer>& buff)
 	msg.append( buff->ReadData(), buff->ReadAbleSize() );
 	buff->Clear();
 	std::cout << msg << std::endl;
+	std::string resp("hello world");
+	channel->SendMsg( resp.data(), resp.size() );
 	return 0;
 }
 
